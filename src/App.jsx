@@ -110,6 +110,7 @@ function App() {
     }
   };
 
+  // Reset form
   const resetForm = () => {
     setFullName("");
     setUsername("");
@@ -120,6 +121,8 @@ function App() {
     descriptionRef.current.value = "";
   };
 
+  // Reference al form
+  const formRef = useRef();
 
 
   return (
@@ -127,7 +130,7 @@ function App() {
       <h1>Web Developer Signup</h1>
 
       {/* Form */}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={formRef}>
         {/* Input nome completo */}
         <input
           className="input"
@@ -236,6 +239,7 @@ function App() {
           )
         )}
 
+        {/* Bottoni */}
         <button className="btn" type="submit">
           Registrati
         </button>
@@ -251,13 +255,9 @@ function App() {
 
       <button
         className="scroll-top"
-        onClick={() =>
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          })
-        }
-      >
+        onClick={() => {
+          formRef.current.scrollIntoView({ behavior: "smooth" });
+        }}>
         ↑
       </button>
     </div>
